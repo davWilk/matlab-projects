@@ -1,6 +1,7 @@
 classdef TankFig
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
+    %TankFig class for tank simulation figure
+    %   Houses all logic required to draw/update current state of
+    %   simulation
     
     properties (Access = private)
         Fig
@@ -19,8 +20,7 @@ classdef TankFig
     
     methods
         function obj = TankFig(h_max, A)
-            %UNTITLED Construct an instance of this class
-            %   Detailed explanation goes here
+            %TankFig Constructs an instance of this class
             obj.Fig = figure;
             obj.Axes = axes();
             set(gca, 'xtick', []);
@@ -30,16 +30,19 @@ classdef TankFig
         end
         
         function update(obj, h, fi, fo, t)
-            %METHOD1 Summary of this method goes here
-            %   Detailed explanation goes here
+            %update Updates figure with supplied sim data
+            %   h - height of liquid in tank
+            %   fi - tank input flow
+            %   fo - tank output flow
+            %   t - current sim time
             drawTank(obj);
             pct_h = h / obj.TankHeight;
             x_area = [0.2 0.7 0.7 0.2];
             y_area = [0 0 pct_h*0.6 pct_h*0.6];
             hold on;
             text(0.7, 0.9, "t = "+t)
-            text(0.7, 0.83, "f_i_n = "+sprintf('%.4f',fi)+'m^3s^{-1}');
-            text(0.7, 0.76, "f_o_u_t = "+sprintf('%.4f',fo)+'m^3s^{-1}');
+            text(0.7, 0.83, "f_{in} = "+sprintf('%.4f',fi)+'m^3/s');
+            text(0.7, 0.76, "f_{out} = "+sprintf('%.4f',fo)+'m^3/s');
             fill(obj.Axes, x_area, y_area, 'blue');
             if fi ~= 0
                 fill(obj.Axes, obj.PipeIn_x, obj.PipeIn_y, 'blue');
@@ -54,7 +57,8 @@ classdef TankFig
 
     methods (Access = private)        
         function drawTank(obj)
-            % drawing tank
+            % drawTank Draws tank onto figure
+            
             plot(obj.Axes, obj.Tank_x, obj.Tank_y, 'LineWidth', 2.0, 'Color', 'black');
 
             % drawing pipes

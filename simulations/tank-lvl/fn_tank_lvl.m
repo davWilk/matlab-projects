@@ -1,5 +1,5 @@
 function [h, f_i, f_o, overflow] = fn_tank_lvl(h, f_i, R_o, rho, H, A, dt)
-%FUNC_TANK_LVL Plant model of tank level
+%fn_tank_lvl Plant model of tank level
 %   Takes inputs of:
 %       h - Current Tank Height
 %       f_i - Flow In

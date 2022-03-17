@@ -1,6 +1,6 @@
 classdef PIDController
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
+    %PIDController Class for PID controller
+    %   Contains integral anti-windup logic
     
     properties (Access = private)
         ref; % reference input, upon change we clear error summation
@@ -15,8 +15,7 @@ classdef PIDController
     
     methods
         function obj = PIDController(Kp, Ki, Kd, outMax, outMin)
-            %UNTITLED Construct an instance of this class
-            %   Detailed explanation goes here
+            %PIDController Constructs an instance of class
             obj.Kp = Kp;
             obj.Ki = Ki;
             obj.Kd = Kd;
@@ -28,7 +27,7 @@ classdef PIDController
             obj.prev_error = 0;
         end
         
-        function output = compute(obj, ref, y)
+        function [obj, output] = compute(obj, ref, y)
             %compute Apply PID control law to current error
             %   ref = current desired output, y = current state.
 

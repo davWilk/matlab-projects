@@ -1,4 +1,5 @@
 %% setup
+addpath('objs');
 clc
 clear
 close all
